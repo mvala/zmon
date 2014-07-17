@@ -7,6 +7,8 @@
 # Libraries
 *.lib
 *.a
+*.la
+*.lo
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -22,14 +24,23 @@
 *.x86_64
 *.hex
 
+*Makefile
 *.in
 *.m4
 autom4te.cache/
 config/
 configure
+libtool
+config.*
 doc/*.7
 doc/*.3
-src/platform.h.in
+platform.h*
+*/.deps/
+*/.libs/
+
+src/libzmon.pc
+src/stamp-h1
+src/zmon_selftest
 
 # eclipse setting
 .cproject
