@@ -42,4 +42,7 @@
 #   error "ZMON needs CZMQ/2.2.0 or later"
 #endif
 
+#include "zsuper.h"
+#include "zmon_api.h"
+
 #endif

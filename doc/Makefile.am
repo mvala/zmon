@@ -1,5 +1,9 @@
+#################################################################
+#   GENERATED SOURCE CODE, DO NOT EDIT EXCEPT EXPERIMENTALLY    #
+#   Please read the README.txt file in the model directory.     #
+#################################################################
 MAN1 =
-MAN3 =
+MAN3 = zsuper.3 zmon_api.3
 MAN7 = zmon.7
 MAN_DOC = $(MAN1) $(MAN3) $(MAN7)
 
@@ -23,7 +27,7 @@ SUFFIXES=.txt .xml .1 .3 .7
 .txt.xml:
 	$(srcdir)/mkman $<
 	asciidoc -d manpage -b docbook -f $(srcdir)/asciidoc.conf \
-		-atsp_version=@PACKAGE_VERSION@ -o$@ $<
+		-azmon_version=@PACKAGE_VERSION@ -o$@ $<
 .xml.1:
 	xmlto man $<
 .xml.3:
@@ -31,3 +35,7 @@ SUFFIXES=.txt .xml .1 .3 .7
 .xml.7:
 	xmlto man $<
 endif
+#################################################################
+#   GENERATED SOURCE CODE, DO NOT EDIT EXCEPT EXPERIMENTALLY    #
+#   Please read the README.txt file in the model directory.     #
+#################################################################

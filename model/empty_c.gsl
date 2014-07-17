@@ -1,0 +1,132 @@
+.#  empty_c.gsl
+.#
+.#  Generates a empty class
+.#
+.include "library.gsl"
+.resolve_includes ()
+.echo "Generating ../include/$(class.name).h..."
+.output "../include/$(class.name).h"
+/*  =========================================================================
+    $(class.name) - $(class.title)
+
+    Generated codec header for $(class.name)
+    -------------------------------------------------------------------------
+    $(string.trim (class->license.):block                                   )
+    =========================================================================
+*/
+
+#ifndef __$(CLASS.NAME)_H_INCLUDED__
+#define __$(CLASS.NAME)_H_INCLUDED__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+//  Opaque class structure
+typedef struct _$(class.name)_t $(class.name)_t;
+
+//  @interface
+//  Create a new $(class.name)
+CZMQ_EXPORT $(class.name)_t *
+    $(class.name)_new (int id);
+
+//  Destroy the $(class.name)
+CZMQ_EXPORT void
+    $(class.name)_destroy ($(class.name)_t **self_p);
+
+//  Print contents of message to stdout
+CZMQ_EXPORT void
+    $(class.name)_dump ($(class.name)_t *self);
+
+//  Self test of this class
+CZMQ_EXPORT int
+    $(class.name)_test (bool verbose);
+//  @end
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+.echo "Generating ../src/$(class.name).c..."
+.output "../src/$(class.name).c"
+/*  =========================================================================
+    $(class.name) - $(class.title)
+
+    Generated codec implementation for $(class.name)
+    -------------------------------------------------------------------------
+    $(string.trim (class->license.):block                                   )
+    =========================================================================
+*/
+
+/*
+@header
+    $(class.name) - $(class.title)
+@discuss
+@end
+*/
+
+#include "../include/zmon.h"
+
+//  Structure of our class
+
+struct _$(class.name)_t {
+    int id;            // id description
+};
+
+//  --------------------------------------------------------------------------
+//  Create a new $(class.name)
+
+$(class.name)_t *
+$(class.name)_new (int id)
+{
+    $(class.name)_t *self = ($(class.name)_t *) zmalloc (sizeof ($(class.name)_t));
+    self->id = id;
+    return self;
+}
+
+
+//  --------------------------------------------------------------------------
+//  Destroy the $(class.name)
+
+void
+$(class.name)_destroy ($(class.name)_t **self_p)
+{
+    assert (self_p);
+    if (*self_p) {
+        $(class.name)_t *self = *self_p;
+        //  Free object itself
+        free (self);
+        *self_p = NULL;
+    }
+}
+
+//  --------------------------------------------------------------------------
+//  Print contents of message to stdout
+
+void
+$(class.name)_dump ($(class.name)_t *self)
+{
+    assert (self);
+    printf( "id=%d\\n", self->id);
+}
+
+
+
+//  --------------------------------------------------------------------------
+//  Selftest
+
+int
+$(class.name)_test (bool verbose)
+{
+    printf (" * $(class.name): ");
+
+    //  @selftest
+    //  Simple create/destroy test
+    $(class.name)_t *self = $(class.name)_new (0);
+    assert (self);
+    $(class.name)_destroy (&self);
+
+    printf ("OK\\n");
+    return 0;
+}

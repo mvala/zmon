@@ -1,0 +1,50 @@
+zmon_api(3)
+===========
+
+NAME
+----
+zmon_api - zmon api
+
+SYNOPSIS
+--------
+----
+//  Create a new zmon_api
+CZMQ_EXPORT zmon_api_t *
+    zmon_api_new (int id);
+
+//  Destroy the zmon_api
+CZMQ_EXPORT void
+    zmon_api_destroy (zmon_api_t **self_p);
+
+//  Print contents of message to stdout
+CZMQ_EXPORT void
+    zmon_api_dump (zmon_api_t *self);
+
+//  Self test of this class
+CZMQ_EXPORT int
+    zmon_api_test (bool verbose);
+----
+
+DESCRIPTION
+-----------
+
+zmon_api - zmon api
+
+
+EXAMPLE
+-------
+.From zmon_api_test method
+----
+    //  Simple create/destroy test
+    zmon_api_t *self = zmon_api_new (0);
+    assert (self);
+    zmon_api_destroy (&self);
+
+    printf ("OK\n");
+    return 0;
+}
+----
+
+SEE ALSO
+--------
+link:proto[7]

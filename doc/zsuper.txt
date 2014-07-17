@@ -1,0 +1,50 @@
+zsuper(3)
+=========
+
+NAME
+----
+zsuper - manager of zactors
+
+SYNOPSIS
+--------
+----
+//  Create a new zsuper
+CZMQ_EXPORT zsuper_t *
+    zsuper_new (int id);
+
+//  Destroy the zsuper
+CZMQ_EXPORT void
+    zsuper_destroy (zsuper_t **self_p);
+
+//  Print contents of message to stdout
+CZMQ_EXPORT void
+    zsuper_dump (zsuper_t *self);
+
+//  Self test of this class
+CZMQ_EXPORT int
+    zsuper_test (bool verbose);
+----
+
+DESCRIPTION
+-----------
+
+zsuper - manager of zactors
+
+
+EXAMPLE
+-------
+.From zsuper_test method
+----
+    //  Simple create/destroy test
+    zsuper_t *self = zsuper_new (0);
+    assert (self);
+    zsuper_destroy (&self);
+
+    printf ("OK\n");
+    return 0;
+}
+----
+
+SEE ALSO
+--------
+link:proto[7]

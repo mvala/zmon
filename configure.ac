@@ -217,7 +217,7 @@ AC_C_VOLATILE
 
 # These options are GNU compiler specific.
 if test "x$GCC" = "xyes"; then
-    CPPFLAGS="-pedantic -Werror -Wall ${CPPFLAGS}"
+    CPPFLAGS="-pedantic -Werror -Wall -Wformat=2 ${CPPFLAGS}"
 fi
 
 AM_CONDITIONAL(INSTALL_MAN, test "x$zmon_install_man" = "xyes")

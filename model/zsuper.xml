@@ -1,0 +1,4 @@
+<class name = "zsuper" signature = "1" title = "manager of zactors">
+This is manager of zactors
+<include filename = "license.xml" />
+</class>
