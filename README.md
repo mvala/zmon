@@ -1,7 +1,4 @@
-# Your Project
+# zmon
 
 ## Overview
-
-## License and Contribution Policy
-
-
+zmon is system monitoring tool. It is an example how to use zsuper and zactor classes together
