@@ -10,7 +10,7 @@ SYNOPSIS
 ----
 //  Create a new zsuper
 CZMQ_EXPORT zsuper_t *
-    zsuper_new (int id);
+    zsuper_new (zactor_t *actor);
 
 //  Destroy the zsuper
 CZMQ_EXPORT void
@@ -36,8 +36,11 @@ EXAMPLE
 .From zsuper_test method
 ----
     //  Simple create/destroy test
-    zsuper_t *self = zsuper_new (0);
+    zactor_t *actor = zactor_new (echo_actor, "Hello, World");
+    zsuper_t *self = zsuper_new (actor);
     assert (self);
+
+    //  zsuper_destroy will destroy its zactor
     zsuper_destroy (&self);
 
     printf ("OK\n");

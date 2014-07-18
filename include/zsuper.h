@@ -37,7 +37,7 @@ typedef struct _zsuper_t zsuper_t;
 //  @interface
 //  Create a new zsuper
 CZMQ_EXPORT zsuper_t *
-    zsuper_new (int id);
+    zsuper_new (char *inbox_url, char *outbox_url);
 
 //  Destroy the zsuper
 CZMQ_EXPORT void
@@ -46,6 +46,10 @@ CZMQ_EXPORT void
 //  Print contents of message to stdout
 CZMQ_EXPORT void
     zsuper_dump (zsuper_t *self);
+
+//  Main loop
+CZMQ_EXPORT void
+    zsuper_loop (zsuper_t *self);
 
 //  Self test of this class
 CZMQ_EXPORT int

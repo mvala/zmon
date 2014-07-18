@@ -33,7 +33,7 @@ int main (int argc, char *argv [])
         verbose = false;
 
     printf ("Running self tests...\n");
-    if (verbose) printf("Running in verbose mode ...\n");
+    zsuper_test (verbose);
     printf ("Tests passed OK\n");
     return 0;
 }
