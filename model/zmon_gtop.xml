@@ -1,0 +1,4 @@
+<class name = "zmon_gtop" signature = "1" title = "zmon gtop plugin">
+This is zmon gtop plugin
+<include filename = "license.xml" />
+</class>

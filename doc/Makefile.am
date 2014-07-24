@@ -3,7 +3,7 @@
 #   Please read the README.txt file in the model directory.     #
 #################################################################
 MAN1 =
-MAN3 = zsuper.3 zmon_api.3
+MAN3 = zmon_val.3 zmon_gtop.3 zmon_gtop_proc.3
 MAN7 = zmon.7
 MAN_DOC = $(MAN1) $(MAN3) $(MAN7)
 

@@ -38,11 +38,15 @@
     ZMON_MAKE_VERSION(ZMON_VERSION_MAJOR, ZMON_VERSION_MINOR, ZMON_VERSION_PATCH)
 
 #include <czmq.h>
-#if CZMQ_VERSION < 20200
-#   error "ZMON needs CZMQ/2.2.0 or later"
+#if CZMQ_VERSION < 30000
+#   error "ZMON needs CZMQ/3.0.0 or later"
 #endif
 
-#include "zsuper.h"
-#include "zmon_api.h"
+#include <glib.h>
+#include <glibtop.h>
+
+#include "zmon_val.h"
+#include "zmon_gtop_proc.h"
+#include "zmon_gtop.h"
 
 #endif

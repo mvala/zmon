@@ -1,5 +1,6 @@
 <project name = "zmon">
   <header name = "zmon" />
-  <class name = "zsuper" />
-  <class name = "zmon_api" />
+  <class name = "zmon_val" />
+  <class name = "zmon_gtop" />
+  <class name = "zmon_gtop_proc" />
 </project>

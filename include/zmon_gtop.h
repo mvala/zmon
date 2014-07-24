@@ -1,7 +1,7 @@
 /*  =========================================================================
-    zmon_api - zmon api
+    zmon_gtop - zmon gtop plugin
 
-    Generated codec header for zmon_api
+    Generated codec header for zmon_gtop
     -------------------------------------------------------------------------
     Copyright (c) 2014 UEF SAV -- http://www.saske.sk                       
     Copyright other contributors as noted in the AUTHORS file.              
@@ -24,32 +24,56 @@
     =========================================================================
 */
 
-#ifndef __ZMON_API_H_INCLUDED__
-#define __ZMON_API_H_INCLUDED__
+#ifndef __ZMON_GTOP_H_INCLUDED__
+#define __ZMON_GTOP_H_INCLUDED__
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 //  Opaque class structure
-typedef struct _zmon_api_t zmon_api_t;
+typedef struct _zmon_gtop_t zmon_gtop_t;
 
 //  @interface
-//  Create a new zmon_api
-CZMQ_EXPORT zmon_api_t *
-    zmon_api_new (int id);
+//  Create a new zmon_gtop
+CZMQ_EXPORT zmon_gtop_t *
+    zmon_gtop_new ();
 
-//  Destroy the zmon_api
+//  Destroy the zmon_gtop
 CZMQ_EXPORT void
-    zmon_api_destroy (zmon_api_t **self_p);
+    zmon_gtop_destroy (zmon_gtop_t **self_p);
 
 //  Print contents of message to stdout
 CZMQ_EXPORT void
-    zmon_api_dump (zmon_api_t *self);
+    zmon_gtop_dump (zmon_gtop_t *self);
+
+//  Publish monitoring information to pub_socket
+CZMQ_EXPORT void
+    zmon_gtop_publish (zmon_gtop_t *self, void *to);
+
+//  Do we monitor process
+CZMQ_EXPORT int
+   zmon_gtop_is_process(zmon_gtop_t *self, pid_t pid);
+
+//  Add process
+CZMQ_EXPORT void
+    zmon_gtop_add_process(zmon_gtop_t *self, pid_t pid);
+
+//  Remove process
+CZMQ_EXPORT void
+    zmon_gtop_remove_process(zmon_gtop_t *self, pid_t pid);
+
+//  Destroy all subprocesses
+CZMQ_EXPORT void
+    zmon_gtop_processes_destroy(zmon_gtop_t *self);
+
+//   Update monitoring information
+CZMQ_EXPORT void
+    zmon_gtop_update(zmon_gtop_t *self);
 
 //  Self test of this class
 CZMQ_EXPORT int
-    zmon_api_test (bool verbose);
+    zmon_gtop_test (bool verbose);
 //  @end
 
 #ifdef __cplusplus

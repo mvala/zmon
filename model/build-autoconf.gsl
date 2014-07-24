@@ -44,9 +44,11 @@ lib$(project.name)_la_SOURCES = \\
 
 AM_CFLAGS = -g
 AM_CPPFLAGS = -I$\(top_srcdir)/include
-bin_PROGRAMS = $(project.name)_selftest
+bin_PROGRAMS = $(project.name)_selftest $(project.name)_sensor_gtop
 $(project.name)_selftest_LDADD = lib$(project.name).la
 $(project.name)_selftest_SOURCES = $(project.name)_selftest.c
+$(project.name)_sensor_gtop_LDADD = lib$(project.name).la
+$(project.name)_sensor_gtop_SOURCES = $(project.name)_sensor_gtop.c
 
 lib$(project.name)_la_LDFLAGS = -version-info @LTVER@
 

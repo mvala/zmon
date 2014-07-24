@@ -63,6 +63,19 @@ if test "x${ZMON_GCOV}" == "xyes"; then
     fi
 fi
 
+# glib
+PKG_CHECK_MODULES([GLIB], [glib-2.0])
+CFLAGS="${GLIB_CFLAGS} ${CFLAGS}"
+LDFLAGS="${GLIB_LDFLAGS} ${LDFLAGS}"
+LIBS="${GLIB_LIBS} $LIBS"
+
+# libgtop
+PKG_CHECK_MODULES([GLIBTOP], [libgtop-2.0])
+CFLAGS="${GLIBTOP_CFLAGS} ${CFLAGS}"
+LDFLAGS="${GLIBTOP_LDFLAGS} ${LDFLAGS}"
+LIBS="${GLIBTOP_LIBS} $LIBS"
+
+
 # libzmq integration
 AC_ARG_WITH([libzmq],
             [AS_HELP_STRING([--with-libzmq],

@@ -1,7 +1,7 @@
 /*  =========================================================================
-    zmon_api - zmon api
+    zmon_val - zmon values
 
-    Generated codec implementation for zmon_api
+    Generated codec implementation for zmon_val
     -------------------------------------------------------------------------
     Copyright (c) 2014 UEF SAV -- http://www.saske.sk                       
     Copyright other contributors as noted in the AUTHORS file.              
@@ -26,7 +26,7 @@
 
 /*
 @header
-    zmon_api - zmon api
+    zmon_val - zmon values
 @discuss
 @end
 */
@@ -35,31 +35,38 @@
 
 //  Structure of our class
 
-struct _zmon_api_t {
-    int id;            // id description
+struct _zmon_val_t {
+    void *current;           //  Current pointer of values
+    void *previous;          //  Previous pointer of values
 };
 
 //  --------------------------------------------------------------------------
-//  Create a new zmon_api
+//  Create a new zmon_val
 
-zmon_api_t *
-zmon_api_new (int id)
+zmon_val_t *
+zmon_val_new ()
 {
-    zmon_api_t *self = (zmon_api_t *) zmalloc (sizeof (zmon_api_t));
-    self->id = id;
+    zmon_val_t *self = (zmon_val_t *) zmalloc (sizeof (zmon_val_t));
+    self->current = NULL;
+    self->previous = NULL;
     return self;
 }
 
 
 //  --------------------------------------------------------------------------
-//  Destroy the zmon_api
+//  Destroy the zmon_val
+//  Note: zmon_val is destroying pointers
 
 void
-zmon_api_destroy (zmon_api_t **self_p)
+zmon_val_destroy (zmon_val_t **self_p)
 {
     assert (self_p);
     if (*self_p) {
-        zmon_api_t *self = *self_p;
+        zmon_val_t *self = *self_p;
+
+        free (self->current);
+        free (self->previous);
+
         //  Free object itself
         free (self);
         *self_p = NULL;
@@ -70,27 +77,84 @@ zmon_api_destroy (zmon_api_t **self_p)
 //  Print contents of message to stdout
 
 void
-zmon_api_dump (zmon_api_t *self)
+zmon_val_dump (zmon_val_t *self)
 {
     assert (self);
-    printf( "id=%d\n", self->id);
 }
 
+//  --------------------------------------------------------------------------
+//  Sets value of current pointer
+
+void
+zmon_val_set_current (zmon_val_t *self, void *val)
+{
+    assert (self);
+    self->current = val;
+}
+
+//  --------------------------------------------------------------------------
+//  Sets value of previous pointer
+
+void
+zmon_val_set_previous (zmon_val_t *self, void *val)
+{
+    assert (self);
+    self->previous = val;
+}
+
+//  --------------------------------------------------------------------------
+//  Gets current value
+void *
+zmon_val_get_current (zmon_val_t *self)
+{
+    assert (self);
+    return self->current;
+}
+
+//  --------------------------------------------------------------------------
+//  Gets previous value
+
+void *
+zmon_val_get_previous (zmon_val_t *self)
+{
+    assert (self);
+    return self->previous;
+}
+
+//  --------------------------------------------------------------------------
+//  Switch pointers
+
+void
+zmon_val_switch (zmon_val_t *self)
+{
+    assert (self);
+    void *tmp = self->previous;
+    self->previous = self->current;
+    self->current = tmp;
+}
 
 
 //  --------------------------------------------------------------------------
 //  Selftest
 
 int
-zmon_api_test (bool verbose)
+zmon_val_test (bool verbose)
 {
-    printf (" * zmon_api: ");
+    printf (" * zmon_val: ");
 
     //  @selftest
     //  Simple create/destroy test
-    zmon_api_t *self = zmon_api_new (0);
+    zmon_val_t *self = zmon_val_new ();
     assert (self);
-    zmon_api_destroy (&self);
+
+//    void *my_val = zmalloc (sizeof (glibtop_cpu));
+//    assert (!zmon_val_set (self, my_val));
+//
+//    void *my_val2 = zmalloc (sizeof (glibtop_mem));
+//    assert (zmon_val_set (self, my_val2) == my_val);
+//    assert (zmon_val_set (self, my_val) == my_val2);
+
+    zmon_val_destroy (&self);
 
     printf ("OK\n");
     return 0;

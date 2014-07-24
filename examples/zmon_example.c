@@ -6,13 +6,11 @@ int main(int argc, char **argv) {
     zstr_sendx (mon_pub, "SET", "server/animate", "0", NULL);
     zstr_sendx (mon_pub, "BIND", "tcp://*:5670", NULL);
 
-
     zactor_t *mon_node = zactor_new (zgossip, "mon_node");
     assert (mon_node);
     zstr_sendx (mon_node, "SET", "server/animate", "0", NULL);
     zstr_sendx (mon_node, "BIND", "inproc://mon_node", NULL);
     zstr_sendx (mon_node, "CONNECT", "tcp://localhost:5670", NULL);
-
 
     zactor_t *mon_node_sensor_cpu = zactor_new (zgossip, "mon_node_sensor_cpu");
     assert (mon_node_sensor_cpu);

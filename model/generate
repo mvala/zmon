@@ -4,8 +4,8 @@ export PATH="/usr/local/bin:$PATH"
 
 # already done
 #gsl -q -script:empty_c zmon.xml
-#gsl -q -script:empty_c zsuper.xml
-#gsl -q -script:empty_c zmon_api.xml
-
+#gsl -q -script:empty_c zmon_gtop.xml
+[ -f ../src/zmon_gtop_proc.c ] || gsl -q -script:empty_c zmon_gtop_proc.xml
+[ -f ../src/zmon_val.c ] || gsl -q -script:empty_c zmon_val.xml
 
 gsl -q -script:project.gsl project.xml

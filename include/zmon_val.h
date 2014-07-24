@@ -1,7 +1,7 @@
 /*  =========================================================================
-    zsuper - manager of zactors
+    zmon_val - zmon values
 
-    Generated codec header for zsuper
+    Generated codec header for zmon_val
     -------------------------------------------------------------------------
     Copyright (c) 2014 UEF SAV -- http://www.saske.sk                       
     Copyright other contributors as noted in the AUTHORS file.              
@@ -24,36 +24,52 @@
     =========================================================================
 */
 
-#ifndef __ZSUPER_H_INCLUDED__
-#define __ZSUPER_H_INCLUDED__
+#ifndef __ZMON_VAL_H_INCLUDED__
+#define __ZMON_VAL_H_INCLUDED__
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 //  Opaque class structure
-typedef struct _zsuper_t zsuper_t;
+typedef struct _zmon_val_t zmon_val_t;
 
 //  @interface
-//  Create a new zsuper
-CZMQ_EXPORT zsuper_t *
-    zsuper_new (char *inbox_url, char *outbox_url);
+//  Create a new zmon_val
+CZMQ_EXPORT zmon_val_t *
+    zmon_val_new ();
 
-//  Destroy the zsuper
+//  Destroy the zmon_val
 CZMQ_EXPORT void
-    zsuper_destroy (zsuper_t **self_p);
+    zmon_val_destroy (zmon_val_t **self_p);
+
+//  Sets value of previous pointer
+CZMQ_EXPORT void
+    zmon_val_set_current (zmon_val_t *self, void *val);
+
+//  Sets value of previous pointer
+CZMQ_EXPORT void
+    zmon_val_set_previous (zmon_val_t *self, void *val);
+
+//  Gets current value
+CZMQ_EXPORT void *
+    zmon_val_get_current (zmon_val_t *self);
+
+//  Gets previous value
+CZMQ_EXPORT void *
+    zmon_val_get_previous (zmon_val_t *self);
+
+//  Switch pointers
+CZMQ_EXPORT void
+    zmon_val_switch (zmon_val_t *self);
 
 //  Print contents of message to stdout
 CZMQ_EXPORT void
-    zsuper_dump (zsuper_t *self);
-
-//  Main loop
-CZMQ_EXPORT void
-    zsuper_loop (zsuper_t *self);
+    zmon_val_dump (zmon_val_t *self);
 
 //  Self test of this class
 CZMQ_EXPORT int
-    zsuper_test (bool verbose);
+    zmon_val_test (bool verbose);
 //  @end
 
 #ifdef __cplusplus

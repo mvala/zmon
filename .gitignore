@@ -40,7 +40,8 @@ platform.h*
 
 src/libzmon.pc
 src/stamp-h1
-src/zmon_selftest
+src/zmon_selftest*
+src/zmon_sensor_gtop
 
 # eclipse setting
 .cproject
@@ -48,3 +49,4 @@ src/zmon_selftest
 
 # backup files
 *~
+*.log

@@ -1,0 +1,50 @@
+zmon_gtop(3)
+============
+
+NAME
+----
+zmon_gtop - zmon gtop plugin
+
+SYNOPSIS
+--------
+----
+//  Create a new zmon_gtop
+CZMQ_EXPORT zmon_gtop_t *
+    zmon_gtop_new (int id);
+
+//  Destroy the zmon_gtop
+CZMQ_EXPORT void
+    zmon_gtop_destroy (zmon_gtop_t **self_p);
+
+//  Print contents of message to stdout
+CZMQ_EXPORT void
+    zmon_gtop_dump (zmon_gtop_t *self);
+
+//  Self test of this class
+CZMQ_EXPORT int
+    zmon_gtop_test (bool verbose);
+----
+
+DESCRIPTION
+-----------
+
+zmon_gtop - zmon gtop plugin
+
+
+EXAMPLE
+-------
+.From zmon_gtop_test method
+----
+    //  Simple create/destroy test
+    zmon_gtop_t *self = zmon_gtop_new (0);
+    assert (self);
+    zmon_gtop_destroy (&self);
+
+    printf ("OK\n");
+    return 0;
+}
+----
+
+SEE ALSO
+--------
+link:proto[7]

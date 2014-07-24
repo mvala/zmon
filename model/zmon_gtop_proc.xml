@@ -1,0 +1,4 @@
+<class name = "zmon_gtop_proc" signature = "1" title = "zmon gtop pid monitor">
+This is zmon gtop pid monitor
+<include filename = "license.xml" />
+</class>

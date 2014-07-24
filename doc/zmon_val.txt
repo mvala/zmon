@@ -1,0 +1,58 @@
+zmon_val(3)
+===========
+
+NAME
+----
+zmon_val - zmon values
+
+SYNOPSIS
+--------
+----
+//  Create a new zmon_val
+CZMQ_EXPORT zmon_val_t *
+    zmon_val_new ();
+
+//  Destroy the zmon_val
+CZMQ_EXPORT void
+    zmon_val_destroy (zmon_val_t **self_p);
+
+//  Set val and time
+CZMQ_EXPORT void *
+    zmon_val_set (zmon_val_t *self, void *val);
+
+//  Print contents of message to stdout
+CZMQ_EXPORT void
+    zmon_val_dump (zmon_val_t *self);
+
+//  Self test of this class
+CZMQ_EXPORT int
+    zmon_val_test (bool verbose);
+----
+
+DESCRIPTION
+-----------
+
+zmon_val - zmon values
+
+
+EXAMPLE
+-------
+.From zmon_val_test method
+----
+    //  Simple create/destroy test
+    zmon_val_t *self = zmon_val_new ();
+    assert (self);
+
+    void *my_val = zmalloc (sizeof (glibtop_cpu));
+    assert (!zmon_val_set (self, my_val));
+
+    zmon_val_destroy (&self);
+
+    printf ("OK\n");
+    return 0;
+}
+----
+
+SEE ALSO
+--------
+link:proto[7]

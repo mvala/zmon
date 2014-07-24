@@ -1,0 +1,4 @@
+<class name = "zmon_val" signature = "1" title = "zmon values">
+This is zmon values
+<include filename = "license.xml" />
+</class>
