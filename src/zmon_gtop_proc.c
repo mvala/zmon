@@ -328,14 +328,30 @@ void zmon_gtop_proc_update (zmon_gtop_proc_t *self)
 
         free (self->json);
 
-        if (asprintf (&self->json, "{ \"time\": \"%ld\"", time(NULL)) < 0)
+        if (asprintf (&self->json, "{ \"node\": { ") < 0)
             self->json = NULL;
+        char *tmp = self->json;
+
+        if (asprintf (&tmp, "%s \"hostname\": \"%s\",", self->json, zsys_hostname()) < 0)
+            tmp = NULL;
+        free (self->json);
+        self->json = tmp;
+
+        if (asprintf (&tmp, "%s \"time\": \"%ld\"", self->json, time(NULL)) < 0)
+            tmp = NULL;
+        free (self->json);
+        self->json = tmp;
+
+        if (asprintf (&tmp, "%s }", self->json) < 0)
+            tmp = NULL;
+        free (self->json);
+        self->json = tmp;
+
 
         zmon_gtop_proc_fill_cpu (self);
         zmon_gtop_proc_fill_mem (self);
         zmon_gtop_proc_fill_net (self);
 
-        char *tmp = self->json;
         if (asprintf (&tmp, "%s }", self->json) < 0)
             tmp = NULL;
         free (self->json);
