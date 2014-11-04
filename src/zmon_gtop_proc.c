@@ -278,9 +278,9 @@ zmon_gtop_proc_fill_net (zmon_gtop_proc_t *self)
         glibtop_netload *prev = (glibtop_netload *) zmon_val_get_previous (net_val);
         glibtop_get_netload (cur, zhash_cursor(self->nets));
 
-        zclock_log ("%s cur=%ld", zhash_cursor(self->nets), cur->bytes_in - prev->bytes_in);
+        zclock_log ("%s cur=%ld", (char *)zhash_cursor(self->nets), cur->bytes_in - prev->bytes_in);
 
-        if (asprintf (&ret_str, "%s \"%s\" : { ", self->json, zhash_cursor(self->nets)) < 0)
+        if (asprintf (&ret_str, "%s \"%s\" : { ", self->json, (char *)zhash_cursor(self->nets)) < 0)
             ret_str = NULL;
         free (self->json);
         self->json = ret_str;

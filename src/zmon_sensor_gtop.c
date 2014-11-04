@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < n; i++) {
         zmon_gtop_update (self);
 //        zmon_gtop_dump (self);
-        zclock_sleep (500);
+        zclock_sleep (1000);
     }
 
     zmon_gtop_destroy (&self);
